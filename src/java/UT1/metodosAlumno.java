@@ -1,4 +1,4 @@
-﻿package UT1;
+package UT1;
 
 // EJERCICIO 4
 public class metodosAlumno {
