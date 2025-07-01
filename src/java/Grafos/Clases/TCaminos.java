@@ -1,4 +1,4 @@
-package UT8.Clases;
+package Grafos.Clases;
 
 import java.util.Collection;
 import java.util.LinkedList;

@@ -1,6 +1,6 @@
-package UT8.Clases;
+package Grafos.Clases;
 
-import UT8.Interfaces.IGrafoDirigido;
+import Grafos.Interfaces.IGrafoDirigido;
 
 import java.util.*;
 
@@ -162,19 +162,33 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
     }
 
     public Collection<TVertice> bea(Comparable etiquetaOrigen) {
-        if (this.getVertices().isEmpty()) {
-            return null;
-        } else {
-            this.desvisitarVertices();
-            if(this.existeVertice(etiquetaOrigen))
-            {
-                TVertice vert= super.buscarVertice(etiquetaOrigen);
-                Collection<TVertice> verts = new LinkedList<TVertice>();
-                vert.bea(verts);
-                return verts;
-            }
-            return null;
+        LinkedList<TVertice> resultado = new LinkedList<>();
+        if (this.getVertices().isEmpty() || !this.existeVertice(etiquetaOrigen)) {
+            return resultado;
         }
+
+        this.desvisitarVertices();
+        TVertice origen = this.buscarVertice(etiquetaOrigen);
+        Queue<TVertice> cola = new LinkedList<>();
+
+        origen.setVisitado(true);
+        cola.add(origen);
+
+        while (!cola.isEmpty()) {
+            TVertice actual = cola.poll();
+            resultado.add(actual);
+
+            for (Object adyacenciaObj : actual.getAdyacentes()) {
+                TAdyacencia adyacencia = (TAdyacencia) adyacenciaObj;
+                TVertice adyacente = adyacencia.getDestino();
+                if (!adyacente.getVisitado()) {
+                    adyacente.setVisitado(true);
+                    cola.add(adyacente);
+                }
+            }
+        }
+
+        return resultado;
     }
 
     public boolean esConexo() {

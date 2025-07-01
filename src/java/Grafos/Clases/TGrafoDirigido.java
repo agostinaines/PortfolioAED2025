@@ -1,8 +1,8 @@
-package UT8.Clases;
+package Grafos.Clases;
 
-import UT8.Interfaces.IAdyacencia;
-import UT8.Interfaces.IGrafoDirigido;
-import UT8.Interfaces.IVertice;
+import Grafos.Interfaces.IAdyacencia;
+import Grafos.Interfaces.IGrafoDirigido;
+import Grafos.Interfaces.IVertice;
 
 import java.util.*;
 

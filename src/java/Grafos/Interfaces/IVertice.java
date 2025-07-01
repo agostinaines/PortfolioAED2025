@@ -1,9 +1,9 @@
-package UT8.Interfaces;
+package Grafos.Interfaces;
 
-import UT8.Clases.TAdyacencia;
-import UT8.Clases.TCamino;
-import UT8.Clases.TCaminos;
-import UT8.Clases.TVertice;
+import Grafos.Clases.TAdyacencia;
+import Grafos.Clases.TCamino;
+import Grafos.Clases.TCaminos;
+import Grafos.Clases.TVertice;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;

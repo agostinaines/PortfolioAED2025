@@ -1,7 +1,7 @@
-package UT8.Interfaces;
+package Grafos.Interfaces;
 
-import UT8.Clases.TAdyacencia;
-import UT8.Clases.TCamino;
+import Grafos.Clases.TAdyacencia;
+import Grafos.Clases.TCamino;
 
 public interface ICamino {
 

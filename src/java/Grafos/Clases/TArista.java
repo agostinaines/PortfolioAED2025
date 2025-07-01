@@ -1,6 +1,6 @@
-package UT8.Clases;
+package Grafos.Clases;
 
-import UT8.Interfaces.IArista;
+import Grafos.Interfaces.IArista;
 
 public class TArista implements IArista {
 

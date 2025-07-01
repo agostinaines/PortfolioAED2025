@@ -1,6 +1,6 @@
-package UT8.Clases;
+package Grafos.Clases;
 
-import UT8.Interfaces.IGrafoDirigido;
+import Grafos.Interfaces.IGrafoDirigido;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

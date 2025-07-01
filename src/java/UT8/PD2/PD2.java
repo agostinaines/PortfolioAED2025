@@ -1,8 +1,8 @@
-package UT8.PD1;
+package UT8.PD2;
 
-import UT8.Clases.TGrafoNoDirigido;
-import UT8.Clases.TVertice;
-import UT8.Clases.UtilGrafos;
+import Grafos.Clases.TGrafoNoDirigido;
+import Grafos.Clases.TVertice;
+import Grafos.Clases.UtilGrafos;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
-package UT8.Interfaces;
+package Grafos.Interfaces;
 
-import UT8.Clases.TArista;
-import UT8.Clases.TCaminos;
-import UT8.Clases.TVertice;
+import Grafos.Clases.TArista;
+import Grafos.Clases.TCaminos;
+import Grafos.Clases.TVertice;
 
 import java.util.Collection;
 import java.util.Map;

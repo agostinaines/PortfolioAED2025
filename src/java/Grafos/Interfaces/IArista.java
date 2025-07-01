@@ -1,4 +1,4 @@
-package UT8.Interfaces;
+package Grafos.Interfaces;
 
 public interface IArista {
     double getCosto();

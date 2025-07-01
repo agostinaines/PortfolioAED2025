@@ -1,6 +1,6 @@
-package UT8.Interfaces;
+package Grafos.Interfaces;
 
-import UT8.Clases.TVertice;
+import Grafos.Clases.TVertice;
 
 public interface IAdyacencia {
 

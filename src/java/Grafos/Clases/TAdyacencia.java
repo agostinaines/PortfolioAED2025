@@ -1,6 +1,6 @@
-package UT8.Clases;
+package Grafos.Clases;
 
-import UT8.Interfaces.IAdyacencia;
+import Grafos.Interfaces.IAdyacencia;
 
 public class TAdyacencia implements IAdyacencia {
 
