@@ -44,7 +44,7 @@ public class TAristas extends LinkedList<TArista> {
 
         StringBuilder salida = new StringBuilder();
         for (TArista laa : this) {
-            salida.append(laa.getEtiquetaOrigen() + SEPARADOR_ELEMENTOS_IMPRESOS +  laa.getEtiquetaDestino() +  SEPARADOR_ELEMENTOS_IMPRESOS + laa.getCosto());
+            salida.append(laa.getEtiquetaOrigen() + SEPARADOR_ELEMENTOS_IMPRESOS +  laa.getEtiquetaDestino() +  SEPARADOR_ELEMENTOS_IMPRESOS + laa.getCosto() + "\n");
         }
 
         return salida.toString();

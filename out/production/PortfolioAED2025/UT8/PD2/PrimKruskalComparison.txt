@@ -1,0 +1,16 @@
+﻿3. Compara la salida de ambos métodos:
+Kruskal output:
+D-E-3.0
+A-E-4.0
+D-B-5.0
+C-D-6.0
+
+Prim output:
+B-D-2.0
+D-E-4.0
+B-C-4.0
+C-A-3.0
+
+4. Describe las estructuras de datos utilizadas para la implementación de KRUSKAL y analiza / investiga el orden del tiempo de ejecución del algoritmo que has desarrollado.
+5. ¿Puedes encontrar otras alternativas de implementación mejores?
+6. ¿Cuán importante es el consumo de memoria asociado?

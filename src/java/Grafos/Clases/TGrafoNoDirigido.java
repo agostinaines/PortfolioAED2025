@@ -60,7 +60,7 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
         return false;
     }
 
-    public TAristas getLasAristas() {
+    public TAristas getAristas() {
         return this.aristas;
     }
 
@@ -74,7 +74,7 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
         PriorityQueue<TArista> pq = new PriorityQueue<>(Comparator.comparingDouble(TArista::getCosto));
         TVertice inicio = this.getVertices().values().iterator().next();
         visitados.add(inicio.getEtiqueta());
-        for (TArista arista : this.getLasAristas()) {
+        for (TArista arista : this.getAristas()) {
             if (arista.getEtiquetaOrigen().equals(inicio.getEtiqueta())
                     && !visitados.contains(arista.getEtiquetaDestino())) {
                 pq.add(arista);
@@ -92,10 +92,10 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
                 continue;
             }
 
-            mst.getLasAristas().add(aristaMin);
+            mst.getAristas().add(aristaMin);
             visitados.add(destino);
 
-            for (TArista arista : this.getLasAristas()) {
+            for (TArista arista : this.getAristas()) {
                 if (arista.getEtiquetaOrigen().equals(destino)
                         && !visitados.contains(arista.getEtiquetaDestino())) {
                     pq.add(arista);
@@ -126,10 +126,16 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
         for (TArista arista : aristas) {
             Comparable origen = arista.getEtiquetaOrigen();
             Comparable destino = arista.getEtiquetaDestino();
+
+            if (!componentes.containsKey(origen) || !componentes.containsKey(destino)) {
+                System.err.println("Error: Arista con vértice inexistente: " + origen + " - " + destino);
+                continue; // o return null si querés abortar
+            }
+
             int compOrigen = componentes.get(origen);
             int compDestino = componentes.get(destino);
             if (compOrigen != compDestino) {
-                mst.getLasAristas().add(arista);
+                mst.getAristas().add(arista);
 
                 for (Map.Entry<Comparable, Integer> entry : componentes.entrySet()) {
                     if (entry.getValue() == compDestino) {
@@ -147,18 +153,16 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
         return mst;
     }
 
-    public void imprimirPrim() {
+    public String imprimirPrim() {
         TGrafoNoDirigido gndPrim = Prim();
-        for (TVertice v : gndPrim.getVertices().values()) {
-            System.out.println(v.getEtiqueta());
-        }
+        TAristas aristas = gndPrim.getAristas();
+        return aristas.imprimirEtiquetas();
     }
 
-    public void imprimirKruskal() {
+    public String imprimirKruskal() {
         TGrafoNoDirigido gndKruskal = Kruskal();
-        for (TVertice v : gndKruskal.getVertices().values()) {
-            System.out.println(v.getEtiqueta());
-        }
+        TAristas aristas =  gndKruskal.getAristas();
+        return aristas.imprimirEtiquetas();
     }
 
     public Collection<TVertice> bea(Comparable etiquetaOrigen) {
@@ -192,19 +196,13 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
     }
 
     public boolean esConexo() {
-        ArrayList<TVertice> bpf = bpf();
-
-        for (TVertice v : bpf) {
-            v.setVisitado(true);
+        if (this.getVertices().isEmpty()) {
+            return true;
         }
 
-        for (TVertice vertice : getVertices().values()) {
-            if (!vertice.getVisitado()) {
-                return false;
-            }
-        }
-
-        return true;
+        Comparable etiquetaOrigen = this.getVertices().keySet().iterator().next();
+        Collection<TVertice> visitados = this.bea(etiquetaOrigen);
+        return visitados != null && visitados.size() == this.getVertices().size();
     }
 
     public boolean conectados(TVertice origen, TVertice destino) {
