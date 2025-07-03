@@ -11,8 +11,11 @@ import java.util.List;
 
 public class PD2 {
     public static void main(String[] args) {
-        //TGrafoNoDirigido gd = (TGrafoNoDirigido) UtilGrafos.cargarGrafo(("src/java/UT8/PD2/PD2Vertices.csv").trim(),("src/java/UT8/PD2/PD2Aristas.csv").trim(),
-        //        false, TGrafoNoDirigido.class);
+        /*TGrafoNoDirigido gd = (TGrafoNoDirigido) UtilGrafos.cargarGrafo("./src/java/UT8/PD2/PD2Vertices.csv","./src/java/UT8/PD2/PD2Aristas.csv",
+               false, TGrafoNoDirigido.class);
+
+        Double[][] matriz = UtilGrafos.obtenerMatrizCostos(gd.getVertices());
+        UtilGrafos.imprimirMatrizMejorado(matriz, gd.getVertices(), "Matriz");*/
 
         List<TVertice> vertices = Arrays.asList(
                 new TVertice("A"),
@@ -31,11 +34,11 @@ public class PD2 {
                 new TArista("A","E",4),
                 new TArista("D","E",3)
         );
-        TGrafoNoDirigido gd = new TGrafoNoDirigido(vertices, aristas);
+        TGrafoNoDirigido gdos = new TGrafoNoDirigido(vertices, aristas);
 
-        Double[][] matriz = UtilGrafos.obtenerMatrizCostos(gd.getVertices());
-        UtilGrafos.imprimirMatrizMejorado(matriz, gd.getVertices(), "Matriz");
+        Double[][] matrizdos = UtilGrafos.obtenerMatrizCostos(gdos.getVertices());
+        UtilGrafos.imprimirMatrizMejorado(matrizdos, gdos.getVertices(), "Matriz");
 
-        System.out.println(gd.imprimirKruskal());
+        System.out.println(gdos.imprimirKruskal());
     }
 }

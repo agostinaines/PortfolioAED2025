@@ -12,18 +12,13 @@ import java.util.List;
 
 public class PD1 {
     public static void main(String[] args) {
-        TGrafoNoDirigido gd = UtilGrafos.cargarGrafo("src/java/UT8/PD1/PD1Vertices.csv","src/java/UT8/PD1/PD1Aristas.csv",
+        TGrafoNoDirigido gd = UtilGrafos.cargarGrafo("./src/java/UT8/PD1/PD1Vertices.csv","./src/java/UT8/PD1/PD1Aristas.csv",
                 false, TGrafoNoDirigido.class);
 
         Double[][] matriz = UtilGrafos.obtenerMatrizCostos(gd.getVertices());
         UtilGrafos.imprimirMatrizMejorado(matriz, gd.getVertices(), "Matriz");
 
         System.out.println(gd.imprimirPrim());
-
-        /*Collection<TVertice> bea = gd.bea("B");
-        for (TVertice v : bea) {
-            System.out.println(v.getEtiqueta());
-        }*/
 
         // Ejercicio 3
 

@@ -1,0 +1,5 @@
+﻿1. Menciona qué tipo de datos abstractos representa este problema y qué algoritmos son necesarios para resolver la necesidad de la compañía.
+2. Escribe en seudocódigo los algoritmos mencionados.
+3. Aplica esos algoritmos con los datos de este ejemplo.
+
+1.

@@ -1,0 +1,33 @@
+﻿1. Describe en lenguaje natural la solución al problema (solución general y modelo)
+2. Define las estructuras de datos necesarias para representar el TDA y eventualmente las auxiliares necesarias para la resolución.
+3. Escribe un seudocódigo de alto nivel sobre las estructuras definidas.
+4. Analiza el orden del tiempo de ejecución de la aplicación escrita.
+
+1. La solución requerirá construir un grafo a partir de las casas del barrio y de la sub-estación eléctrica. Luego de esto debemos construir un Árbol Abarcador de
+costos Mínimos (AAM) para conectar todos los nodos del grafo (casas y estación) de modo que el cable utilizado sea el mínimo posible.
+2. Las estructuras necesarias para representar el TDA Grafo No Dirigido van a ser una colección de vértices, una colección de aristas, una matriz de costos. Más
+allá de eso, dentro de la solución para el problema, vamos a necesitar un método de búsqueda en amplitud o profundidad para determianr si el grafo construido
+a partir de las casas y la estación es conexo, o simplemente podemos suponer que el terreno es relativamente plano, por lo que no existirían razones para que dos
+casas no puedan estar conectadas. Podemos implementar una clase de Arista que haga más fácil operar con las distancias entre dos vértices dados del grafo.
+3. Pseudocódigo:
+** La clase modela un grafo no dirigido, es decir, relaciones entre vértices y nodos sin direccionalidad, es decir, se puede viajar tanto de A a B como de B a A. **
+Clase GrafoNoDirigido
+    vértices : de tipo HashMap con clave "nombre" y valor Vértice
+    aristas : de tipo Aristas, que contenga el vértice origen y destino y la distancia entre ambos
+
+    constructor
+    Kruskal o Prim
+FIN
+
+** La clase modela una conexión entre dos vértices dados (origen y destino) y guarda el costo de viajar entre estos. **
+Clase Arista
+    Vértice origen
+    Vértice destino
+    Double distancia
+
+    Constructor
+    getters y setters para las etiquetas de los vértices y para el costo (O(1))
+FIN
+
+
+4. Análisis de tiempo de ejecución

@@ -107,7 +107,7 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
         }
 
         if (esConexo() == false) {
-            System.err.println("El grafo no es conexo. MST incompleto.");
+            System.err.println("El grafo no es conexo.");
             return null;
         }
 
@@ -116,20 +116,25 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
 
     public TGrafoNoDirigido Kruskal() {
         TGrafoNoDirigido mst = new TGrafoNoDirigido(this.getVertices().values(), new LinkedList<>());
+
         List<TArista> aristas = new ArrayList<>(this.aristas);
         aristas.sort(Comparator.comparingDouble(TArista::getCosto));
+
         Map<Comparable, Integer> componentes = new HashMap<>();
+
         int idComponente = 0;
+
         for (TVertice v : this.getVertices().values()) {
             componentes.put(v.getEtiqueta(), idComponente++);
         }
+
         for (TArista arista : aristas) {
             Comparable origen = arista.getEtiquetaOrigen();
             Comparable destino = arista.getEtiquetaDestino();
 
             if (!componentes.containsKey(origen) || !componentes.containsKey(destino)) {
                 System.err.println("Error: Arista con vértice inexistente: " + origen + " - " + destino);
-                continue; // o return null si querés abortar
+                continue;
             }
 
             int compOrigen = componentes.get(origen);
@@ -144,7 +149,7 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
                 }
 
                 if (esConexo() == false) {
-                    System.err.println("El grafo no es conexo. MST incompleto.");
+                    System.err.println("El grafo no es conexo.");
                     return null;
                 }
             }
@@ -206,7 +211,15 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
     }
 
     public boolean conectados(TVertice origen, TVertice destino) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (vertices.containsKey(origen) && vertices.containsKey(destino)) {
+            return false;
+        }
+
+        if (((origen.buscarAdyacencia(destino) != null) && (destino.buscarAdyacencia(origen) != null))) {
+            return true;
+        }
+
+        return false;
     }
 
     public LinkedList<TVertice> puntosArticulacion(Comparable etOrigen) {

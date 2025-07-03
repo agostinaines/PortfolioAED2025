@@ -50,7 +50,7 @@ public class TAristas extends LinkedList<TArista> {
         return salida.toString();
     }
 
-    void insertarAmbosSentidos(Collection<TArista> aristas) {
+    public void insertarAmbosSentidos(Collection<TArista> aristas) {
         TArista tempArista;
         for (TArista ta : aristas) {
             this.add(ta);
