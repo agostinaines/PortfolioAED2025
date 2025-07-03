@@ -1,4 +1,4 @@
-package UT1;
+package UT1.PD1;
 
 // EJERCICIO 5
 public class contador {

@@ -1,0 +1,67 @@
+UNIDAD TEMÁTICA 1: INTRODUCCIÓN A JAVA
+PARTE 1 (Sin computadora)
+
+EJERCICIO 1
+PARTE 1
+Dado el siguiente código
+        public class IdentifyMyParts {
+            public static int x = 7;
+            public int y = 3;
+        }
+
+a. ¿Cuáles son las variables de clase? public static int x = 7;
+b. ¿Cuáles son las variables de instancia? public int y = 3;
+
+PARTE 2
+Dado el siguiente código
+        IdentifyMyParts a = new IdentifyMyParts();
+        IdentifyMyParts b = new IdentifyMyParts();
+        a.y = 5;
+        b.y = 6;
+        a.x = 1;
+        b.x = 2;
+        System.out.println("a.y = " + a.y);
+        System.out.println("b.y = " + b.y);
+        System.out.println("a.x = " + a.x);
+        System.out.println("b.x = " + b.x);
+        System.out.println("IdentifyMyParts.x = " + IdentifyMyParts.x);
+
+a. ¿Cuál es la salida que produce?
+        a.y = 5
+        b.y = 6
+        a.x = 2
+        b.x = 2
+        IdentifyMyParts.x = 2
+
+
+EJERCICIO 2 - somethingIsWrong.java
+Dado el siguiente código
+        public class SomethingIsWrong {
+            public static void main(String[] args) {
+                Rectangle myRect;
+                myRect.width = 40;
+                myRect.height = 50;
+                System.out.println("myRect's area is " + myRect.area());
+            }
+        }
+
+a. Indica qué está mal.
+        No existe el método .area para la clase Rectangle. A su vez, la variable myRect no ha sido inicializada.
+b. Repara el error, ejecuta el programa y verifica que la salida sea correcta.
+        Código reparado en class somethingIsWrong.
+
+
+EJERCICIO 3 - contenedorDeNumeros.java
+El siguiente código crea un Arreglo y una Cadena
+String[] students = new String[10];
+String studentName = "Peter Parker";
+students[0] = studentName;
+studentName = null;
+...
+
+a. ¿Cuántas referencias a esos objetos existen luego de que el código se haya ejecutado?
+        Hay 1 referencia al Arreglo que es students, y si bien existieron 2 referencias a “Peter Parker” (studentName y students[0]) se pierde 1 al decir studentName = null; .
+b. ¿Cómo hace un programa para destruir un objeto que ha creado?
+        Un objeto deja de existir dentro de un programa cuando ya no existen más referencias activas que apunten a él.
+c. Dada a siguiente clase, llamada ContenedorDeNumeros , escribe un programa que cree una instancia de la clase, inicialice dos variables miembro y luego muestre el valor de cada una de ellas.
+        Programa creado en contenedorDeNumeros.java

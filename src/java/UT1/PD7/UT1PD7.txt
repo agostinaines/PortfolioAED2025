@@ -1,0 +1,28 @@
+UNIDAD TEMÁTICA 1: INTRODUCCIÓN A JAVA
+
+EJERCICIO 1
+El siguiente bucle es infinito
+        String s = "1";
+            while (s != "1000") {
+                s += "0";
+        }
+
+a. ¿Por qué es esto así? ¿Qué diferencia representa con otros lenguajes como C#?
+        La comparación nunca se vuelve cierta, provocando como consecuencia un bucle infinito, porque nunca cambiamos la condición del bucle while.
+        La sentencia `s += "0";` no hace nada y no tiene sentido. En C# el operador `==` y `!=` comparan contenido en el caso de las cadenas, no referencias, por lo que
+        sí podríamos utilizar estos operadores para comparar strings. Para poder comparar el contenido de cadenas en java necesitamos utilizar el método .equals();.
+        La versión correcta del código sería
+
+        String s = "1";
+        int s = 1;
+        	while (s != 1000) {
+        		s++;
+        }
+
+
+EJERCICIO 2 - ejercicioDos
+a. ¿Qué sentencia se ejecuta como resultado del if en cada caso y por qué?
+En el primer caso el resultado es True mientras que en el segundo el resultado es False. Esto ocurre porque no se compara en sí el contenido del string sino si ambas
+variables apuntan al mismo lugar en la memoria. Al decir que s3 es una new String(); se crea un nuevo lugar en la memoria para guardar la cadena “Hola” que no termina
+siendo el mismo lugar en donde está guardada s4, aunque ambas contengan la misma palabra.
+Fuente: https://javarevisited.blogspot.com/2012/03/how-to-compare-two-string-in-java.html

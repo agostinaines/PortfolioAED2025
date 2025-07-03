@@ -1,0 +1,16 @@
+UNIDAD TEMÁTICA 1: INTRODUCCIÓN A JAVA
+
+EJERCICIO 1 - tablero.java
+
+
+EJERCICIO 2
+a. Escribe un programa que lea de un archivo entrada.txt e imprima la siguiente salida en consola:
+        El entero leído es: 12
+        El número de punto flotante es: 33.44
+        La cadena leída es “Peter”
+        ¡Hola Peter! La suma de 12 y 33.44 es 45.44.
+        La división entera de 33.44 y 12 es 2 y su resto es 9.44.
+   Escrito en leerEntradatxt.java
+
+b. Escribe un programa que devuelva el área y perímetro de un círculo a partir del radio del mismo. Los parámetros se deberán leer de stdin.
+        Escrito en leerEntradaStdin.java

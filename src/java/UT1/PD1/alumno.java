@@ -1,4 +1,4 @@
-package UT1;
+package UT1.PD1;
 
 // EJERICIO 4
 public class alumno {

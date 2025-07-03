@@ -1,0 +1,6 @@
+UNIDAD TEMÁTICA 1: INTRODUCCIÓN A JAVA
+
+También es UT1 TA2 Ejercicios 1 y 2.
+
+EJERCICIO 1 - nFactorial.java
+EJERCICIO 2 - primoSuma.java
