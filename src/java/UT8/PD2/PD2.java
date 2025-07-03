@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PD2 {
     public static void main(String[] args) {
-        /*TGrafoNoDirigido gd = (TGrafoNoDirigido) UtilGrafos.cargarGrafo("./src/java/UT8/PD2/PD2Vertices.csv","./src/java/UT8/PD2/PD2Aristas.csv",
+        /*TGrafoNoDirigido gd = (TGrafoNoDirigido) UtilGrafos.cargarGrafo("./src/java/UT8/PD2/PD2Vertices.txt","./src/java/UT8/PD2/PD2Aristas.csv",
                false, TGrafoNoDirigido.class);
 
         Double[][] matriz = UtilGrafos.obtenerMatrizCostos(gd.getVertices());
