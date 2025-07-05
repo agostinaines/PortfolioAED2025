@@ -114,18 +114,21 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
         return mst;
     }
 
-    public TGrafoNoDirigido Kruskal() {
+    public TGrafoNoDirigido Kruskal()  {
         TGrafoNoDirigido mst = new TGrafoNoDirigido(this.getVertices().values(), new LinkedList<>());
 
         List<TArista> aristas = new ArrayList<>(this.aristas);
+        for (TArista arista : this.aristas) {
+            aristas.add(arista);
+        }
         aristas.sort(Comparator.comparingDouble(TArista::getCosto));
 
         Map<Comparable, Integer> componentes = new HashMap<>();
-
         int idComponente = 0;
 
         for (TVertice v : this.getVertices().values()) {
             componentes.put(v.getEtiqueta(), idComponente++);
+            idComponente++;
         }
 
         for (TArista arista : aristas) {
@@ -139,6 +142,7 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
 
             int compOrigen = componentes.get(origen);
             int compDestino = componentes.get(destino);
+
             if (compOrigen != compDestino) {
                 mst.getAristas().add(arista);
 
@@ -147,16 +151,12 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
                         entry.setValue(compOrigen);
                     }
                 }
-
-                if (esConexo() == false) {
-                    System.err.println("El grafo no es conexo.");
-                    return null;
-                }
             }
         }
 
         return mst;
     }
+
 
     public String imprimirPrim() {
         TGrafoNoDirigido gndPrim = Prim();
@@ -211,7 +211,7 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoDirigido {
     }
 
     public boolean conectados(TVertice origen, TVertice destino) {
-        if (vertices.containsKey(origen) && vertices.containsKey(destino)) {
+        if (!(vertices.containsKey(origen) && vertices.containsKey(destino))) {
             return false;
         }
 

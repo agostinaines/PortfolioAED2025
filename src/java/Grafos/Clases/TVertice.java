@@ -176,7 +176,7 @@ public class TVertice<T> implements IVertice {
     public void indegree(Map<Comparable, Integer> indegree) {
         for (IAdyacencia adyacencia : this.getAdyacentes()) {
             Integer auxIndegree =  indegree.get(adyacencia.getEtiqueta());
-            indegree.replace(adyacencia.getDestino().getEtiqueta(), auxIndegree + 1);
+            indegree.put(adyacencia.getDestino().getEtiqueta(), auxIndegree + 1);
         }
     }
 

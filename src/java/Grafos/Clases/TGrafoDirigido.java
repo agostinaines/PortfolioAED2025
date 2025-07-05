@@ -4,6 +4,7 @@ import Grafos.Interfaces.IAdyacencia;
 import Grafos.Interfaces.IGrafoDirigido;
 import Grafos.Interfaces.IVertice;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class TGrafoDirigido implements IGrafoDirigido {
@@ -88,30 +89,80 @@ public class TGrafoDirigido implements IGrafoDirigido {
         return vertices;
     }
 
+    public HashMap<Comparable, Double> Dijkstra(Comparable etiquetaOrigen) {
+        if (etiquetaOrigen == null || vertices.get(etiquetaOrigen) == null) {
+            return null;
+        }
+        Set<IVertice> visitados = new HashSet<>();
+        HashMap<Comparable, Double> distancias = new HashMap<>();
+        distancias.put(etiquetaOrigen, 0d);
+        IVertice esteVertice = vertices.get(etiquetaOrigen);
+        for (TVertice v : vertices.values()) {
+            if (!v.getEtiqueta().equals(etiquetaOrigen)) {
+                Double costo = esteVertice.obtenerCostoAdyacencia(v);
+                distancias.put(v.getEtiqueta(), costo);
+            }
+        }
+        //Se cargaron los datos de cada adyacencia al origen
+
+        while (vertices.size() != visitados.size()) {
+            Double costo = Double.MAX_VALUE;
+            IVertice vertirceSelecionado = null;
+            //Arrancamos diciendo que el mejor coste es que no haya camino (así posteriormente se actualiza en funcion de la mejor arista)
+            for (IVertice v : vertices.values()) {
+                if (!visitados.contains(v) && distancias.get(v.getEtiqueta()) < costo) {
+                    vertirceSelecionado = v;
+                    costo = distancias.get(v.getEtiqueta());
+                }
+                //Seleccionamos la mejor distancia posible
+            }
+            if (vertirceSelecionado == null) //Precaucción por si no se llega aseleccionar un vertice (aunque no debería de pasar)
+            {
+                break;
+            }
+            distancias.put(vertirceSelecionado.getEtiqueta(), costo);
+            visitados.add(vertirceSelecionado);
+
+            //Lo que se hace aqui es actualizar las distancias de los que pueden tener como vertice intermedio al nuevo agregado.
+            for (IAdyacencia adyacente : vertirceSelecionado.getAdyacentes()) {
+                Double costoDelAdyacente = adyacente.getCosto();
+                IVertice destinoAdyacente = adyacente.getDestino();
+                Double costoTotal = costo + costoDelAdyacente;
+                if (costoTotal < distancias.get(destinoAdyacente.getEtiqueta())) {
+                    distancias.put(destinoAdyacente.getEtiqueta(), costoTotal); //Se actualiza si se puede mejorar el camino pasando por w
+                }
+            }
+        }
+        return distancias;
+    }
+
     @Override
-    public TVertice centroDelGrafo() {
+    public ArrayList<TVertice> centroDelGrafo() {
         if (vertices.isEmpty()) {
             return null;
         }
 
-        double[] excentricidades = new double[vertices.size()];
+        ArrayList<TVertice> resultado = new ArrayList<>();
+        Double excentricidadAux = 0.0;
         int i = 0;
-
-        double max = 0;
-        Comparable etiqueta = "";
+        double max = Double.NEGATIVE_INFINITY;
 
         for (Comparable key : vertices.keySet()) {
-            excentricidades[i] = obtenerExcentricidad(key);
+            excentricidadAux = obtenerExcentricidad(key);
 
-            if  (excentricidades[i] > max) {
-                max = excentricidades[i];
-                etiqueta = key;
+            if  (excentricidadAux > max) {
+                max = excentricidadAux;
+                resultado.clear();
+                resultado.add(vertices.get(key));
+            }
+            else if (excentricidadAux == max) {
+                resultado.add(vertices.get(key));
             }
 
             i++;
         }
 
-        return vertices.get(etiqueta);
+        return resultado;
     }
 
     @Override
@@ -126,8 +177,10 @@ public class TGrafoDirigido implements IGrafoDirigido {
         for (int k = 0; k < matrizFloyd.length; k++) {
             for (int i = 0; i < matrizFloyd[0].length; i++) {
                 for (int j = 0; j < matrizFloyd[0].length; j++) {
-                    if (matrizFloyd[i][k] + matrizFloyd[k][j] < matrizFloyd[i][j]) {
-                        matrizFloyd[i][j] = matrizFloyd[i][k] + matrizFloyd[k][j];
+                    if (matrizFloyd[i][k] != Double.MAX_VALUE && matrizFloyd[k][j] != Double.MAX_VALUE) {
+                        if (matrizFloyd[i][k] + matrizFloyd[k][j] < matrizFloyd[i][j]) {
+                            matrizFloyd[i][j] = matrizFloyd[i][k] + matrizFloyd[k][j];
+                        }
                     }
                 }
             }
@@ -229,13 +282,11 @@ public class TGrafoDirigido implements IGrafoDirigido {
     @Override
     public ArrayList<TVertice> bpf() {
         desvisitarVertices();
-
         ArrayList<TVertice> resultado = new ArrayList<>();
 
         for (TVertice vertice : getVertices().values()) {
             if (!vertice.getVisitado()) {
-                TVertice tVertice = (TVertice) vertice;
-                resultado.addAll(bpf(tVertice.getEtiqueta()));
+                resultado.addAll(bpf(vertice));
             }
         }
 
@@ -244,31 +295,29 @@ public class TGrafoDirigido implements IGrafoDirigido {
 
     @Override
     public ArrayList<TVertice> bpf(Comparable etiquetaOrigen) {
-        TVertice vertice = buscarVertice(etiquetaOrigen);
-
-        TVertice tVertice = (TVertice) vertice;
         desvisitarVertices();
-        return bpf(tVertice);
+        TVertice vertice = buscarVertice(etiquetaOrigen);
+        return bpf(vertice);
     }
 
     @Override
     public ArrayList<TVertice> bpf(TVertice vertice) {
-
         ArrayList<TVertice> resultado = new ArrayList<>();
         if (vertice != null && !vertice.getVisitado()) {
             vertice.setVisitado(true);
+            resultado.add(vertice);
 
-            resultado.add((TVertice) vertice);
-            vertice.getAdyacentes().forEach((adyacente) -> {
-                IAdyacencia ady = (IAdyacencia) adyacente;
-                TVertice destino = ady.getDestino();
+            for (Object ady : vertice.getAdyacentes()) {
+                TAdyacencia adyacencia = (TAdyacencia) ady;
+                TVertice destino = adyacencia.getDestino();
                 if (!destino.getVisitado()) {
-                    resultado.addAll(bpf((TVertice) destino));
+                    resultado.addAll(bpf(destino));
                 }
-            });
+            }
         }
         return resultado;
     }
+
 
     public HashMap<Comparable, Integer> bpfNumSet() {
         HashMap<Comparable, Integer> resultado = new HashMap<>();

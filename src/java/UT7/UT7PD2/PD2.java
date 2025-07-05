@@ -1,7 +1,10 @@
 package UT7.UT7PD2;
 
 import Grafos.Clases.TGrafoDirigido;
+import Grafos.Clases.TVertice;
 import Grafos.Clases.UtilGrafos;
+
+import java.util.ArrayList;
 
 public class PD2 {
     public static void main(String[] args) {
@@ -19,6 +22,11 @@ public class PD2 {
         }
 
         System.out.println();
-        System.out.println("Centro del grafo: " + gd.centroDelGrafo().getEtiqueta());
+        ArrayList<TVertice> centroDelGrafo = gd.centroDelGrafo();
+        StringBuilder centroDelGrafoString = new StringBuilder();
+        for (TVertice v : centroDelGrafo) {
+            centroDelGrafoString.append(v.getEtiqueta().toString()).append(" - ");
+        }
+        System.out.println("Centro del grafo: " + centroDelGrafoString);
     }
 }

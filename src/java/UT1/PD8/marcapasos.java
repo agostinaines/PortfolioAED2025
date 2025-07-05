@@ -1,4 +1,4 @@
-﻿package UT1.PD8;
+package UT1.PD8;
 
 public class marcapasos {
     float presionSanguinea = 250; // 4 bytes

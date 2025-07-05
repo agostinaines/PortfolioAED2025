@@ -1,0 +1,8 @@
+UNIDAD TEMÁTICA 1: INTRODUCCIÓN A JAVA
+
+También es UT1 TA2 Ejercicio 3
+
+EJERCICIO 1
+a. marcapasos.java
+b. Calcular cuánta memoria consume un objeto de su clase (considerando solamente el espacio ocupado por las variables indicadas).
+        Un objeto marcapasos consume 88 bytes.

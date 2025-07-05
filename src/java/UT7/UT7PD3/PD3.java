@@ -4,6 +4,7 @@ import Grafos.Clases.TGrafoDirigido;
 import Grafos.Clases.TVertice;
 import Grafos.Clases.UtilGrafos;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class PD3 {
@@ -47,6 +48,11 @@ public class PD3 {
         }
 
         System.out.println();
-        System.out.println("Centro del grafo: " + gd.centroDelGrafo().getEtiqueta());
+        ArrayList<TVertice> centroDelGrafo = gd.centroDelGrafo();
+        StringBuilder centroDelGrafoString = new StringBuilder();
+        for (TVertice v : centroDelGrafo) {
+            centroDelGrafoString.append(v.getEtiqueta().toString()).append(" - ");
+        }
+        System.out.println("Centro del grafo: " + centroDelGrafoString);
     }
 }

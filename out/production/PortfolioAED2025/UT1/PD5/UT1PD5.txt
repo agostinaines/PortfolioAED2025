@@ -1,0 +1,123 @@
+UNIDAD TEMÁTICA 1: INTRODUCCIÓN A JAVA
+
+EJERCICIO 1
+PARTE 1
+Escribe un ejemplo del uso del tipo enum
+        Ejemplo en radioHeadAlbums.java
+
+PARTE 2
+Teniendo presente el programa escrito en clase para contar vocales y consonantes, reescríbelo utilizando tipos enumerados.
+        Reescrito en contadorPalabras.java
+
+
+EJERCICIO 4
+Dado el siguiente código
+        public class ValueOfDemo {
+            public static void main(String[] args) {
+
+                // this program requires two
+                // arguments on the command line
+                if (args.length == 3) {
+                    // convert strings to numbers
+                    float a = (Float.valueOf (args[0])).floatValue();
+                    float b = (Float.valueOf(args[1])).floatValue ();
+
+                    // do some arithmetic
+                    System.out.println("a + b = " +
+                                                        (a + b));
+                    System.out.println("a - b = " +
+                                                        (a - b));
+                    System.out.println("a * b = " +
+                                                        (a * b));
+                    System.out.println("a / b = " +
+                                                        (a / b));
+                    System.out.println("a % b = " +
+                                                        (a % b));
+                } else {
+                    System.out.println("This program " +
+                                "requires two command-line arguments.");
+                }
+            }
+        }
+
+a. Verificar que funciona correctamente e indicar cual es la salida cuando se invoca con parámetros 13.4 y 66.1.
+        La salida es “This program requires two command-line arguments.” porque el cuerpo del if del principio solo se ejecuta si el arreglo de Strings args es de 3 elementos.
+b. ¿Cómo debería modificarse el código si los parámetros de línea de comando fueran solamente enteros positivos?
+        Código modificado en valueOfDemo.java
+
+
+EJERCICIO 5
+Dado el siguiente código
+        public class ToStringDemo {
+
+            public static void main(String[] args) {
+                double d = 888.51;
+                String s = Double.toString(d);
+
+                int dot = s.indexOf('.');
+
+                System.out.println(dot + " digits " +
+                        "before decimal point.");
+                System.out.println( (s.length() - dot - 1) +
+                        " digits after decimal point.");
+            }
+        }
+
+a. Indicar cuál es la salida al ejecutarlo.
+        3 digits before decimal point.
+        2 digits after decimal point.
+b. Indicar por qué se imprime cada uno de los datos y la razón de su forma.
+        La primera línea devuelve los números a la izquierda del punto decimal utilizando el índice de dicho punto, ya que los índices comienzan en 0, no hay necesidad d
+        e modificar la variable dot. La segunda línea devuelve los números a la derecha del punto decimal, para ello toma el total del largo de la cadena que contiene el
+        número y quita de este valor los números a la izquierda del punto decimal (-dot) y el punto mismo (-1).
+
+
+EJERCICIO 6 y EJERCICIO 7 - ejercicioSeisSiete.java
+
+
+EJERCICIO 8
+a. ¿Cuál es la capacidad del siguiente StringBuilder? Tiene una capacidad de 42.
+        StringBuilder sb = new StringBuilder("Able was I ere I saw Elba.");
+
+
+EJERCICIO 9
+Considere la siguiente String
+        String hannah = "Did Hannah see bees? Hannah did.";
+
+a. ¿Qué valor muestra la expresión hannah.lenght? 32
+b. ¿Qué valor es retornado por la invocación del método `hannah.charAt(12)`? e
+c. Escribe una expresión que referencie la letra “b” en la string referida por hannah. char b = hannah.charAt(15);
+
+
+EJERCICIO 10
+Dada la siguiente expresión
+        "Was it a car or a cat I saw?".substring(9, 12)
+
+a. ¿Qué tan larga es la string devuelta por esta expresión? La string tiene un largo de 3.
+b. ¿Cuál es la string? La string es “car”.
+
+
+EJERCICIO 11
+Dado el siguiente programa
+    public class ComputeResult {
+        public static void main(String[] args) {
+            String original = "este es el curso de Programación 2";
+            StringBuilder result = new StringBuilder("hola");
+            int index = original.indexOf('a');
+
+    /*1*/ result.setCharAt(0, original.charAt(0));
+    /*2*/ result.setCharAt(1, original.charAt(original.length()-1));
+    /*3*/ result.insert(1, original.charAt(4));
+    /*4*/ result.append(original.substring(1,4));
+    /*5*/ result.insert(3, (original.substring(index, index+2) + " "));
+
+            System.out.println(result);
+        }
+    }
+
+a. ¿Cuál es el valor de “result” después de cada una de las líneas ejecutadas?
+        1) result = "eola”
+        2) result = "e2la”
+        3) result = "e 2la”
+        4) result = "e 2laste”
+        5) result = "e 2a laste”

@@ -4,6 +4,7 @@ import Grafos.Clases.TArista;
 import Grafos.Clases.TCaminos;
 import Grafos.Clases.TVertice;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public interface IGrafoDirigido {
 
     double obtenerExcentricidad(Comparable etiquetaVertice);
 
-    TVertice centroDelGrafo();
+    ArrayList<TVertice> centroDelGrafo();
 
     boolean[][] warshall();
     
