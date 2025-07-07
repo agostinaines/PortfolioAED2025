@@ -1,0 +1,45 @@
+﻿EJERCICIO 1
+1. Para construir un trie necesitamos definir una clase Nodo que contenga cualquiera de los 26 caracteres del alfabeto, y un booleano que determine si ese caracter es el
+final de una palabra. En la clase trie debemos tener métodos para insertar y buscar, y un atributo raíz.
+2. El algoritmo recorre letra por letra la palabra que fue pasada como parámetro, si la letra ya existe busca la siguiente, y si no, crea un nuevo nodo con la letra que
+falta. Precondiciones: palabra <> nulo, trie bien estructurado. Post: inserta la palabra pasada por parámetro en el trie. El tiempo de ejecución es O(L * A), siendo
+L el largo de la palabra y A el largo del alfabeto.
+    Insertar(palabra)
+    COMIENZO
+        i <- 0
+        nodo <- this
+        Desde i = 0 hasta i < palabra.tamaño
+            indice = posición de la letra en el alfabeto (a = 0, b = 1, c = 2, etc)
+            Si (nodo.hijos[indice] = nulo)
+                nodo.hijos[indice] = nuevo Nodo Trie
+            Fin Si
+            nodo <- nodo.hijos[indice]
+            i <- i + 1
+        Fin Desde Hasta
+        nodo.esPalabra <- verdadero
+    FIN
+3. ¿Cuántas comparaciones realiza el algoritmo de búsqueda si el argumento es “Programa”? Hace 10 comparaciones.
+   ¿Cuántas comparaciones realiza el algoritmo de búsqueda si el argumento es “Proselitismo? Hace 6 comparaciones y luego devuelve nulo al ver que la palabra no existe.
+   ¿Cuántas comparaciones se realizan para insertar la palabra “cazadores”? Se hacen 7 comparaciones antes de agregar el nuevo nodo.
+   ¿Cuál es la altura del árbol trie resultante? Es de alura 13, el largo de la palabra más larga.
+   ¿Cuál es su tamaño? Es de tamaño 46, la cantidad de nodos en el trie.
+EJERCICIO 2
+    buscarPaginas(palabra)
+    COMIENZO
+        i <- 0
+        nodo <- this
+        Mientras i < palabra.tamaño
+            indice <- posición de la letra en el alfabeto (a = 0, b = 1, ..., z = 25)
+            Si nodo.hijos[indice] = nulo
+                Devolver "La palabra no se encuentra en el libro."
+            Fin Si
+            nodo <- nodo.hijos[indice]
+            i <- i + 1
+        Fin Mientras
+
+        Si nodo.esPalabra = verdadero
+            Devolver nodo.paginas
+        Sino
+            Devolver "La palabra no se encuentra en el libro."
+        Fin Si
+    FIN

@@ -34,6 +34,29 @@ public class ManejadorArchivosGenerico {
                 .getResource(nombreCompletoArchivo).getPath();
         return leerArchivo(path, ignoreHeader);
     }
+
+    public static ArrayList<String> leerArchivoUno(String nombreCompletoArchivo) {
+        FileReader fr;
+        ArrayList<String> listaLineasArchivo = new ArrayList<String>();
+        try {
+            fr = new FileReader(nombreCompletoArchivo);
+            BufferedReader br = new BufferedReader(fr);
+            String lineaActual = br.readLine();
+            while (lineaActual != null) {
+                listaLineasArchivo.add(lineaActual);
+                lineaActual = br.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error al leer el archivo " + nombreCompletoArchivo);
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo " + nombreCompletoArchivo);
+            e.printStackTrace();
+        }
+        System.out.println("Archivo leido satisfactoriamente");
+
+        return listaLineasArchivo;
+    }
     
     public static String[] leerArchivo(String nombreCompletoArchivo, boolean ignoreHeader) {
         FileReader fr;
