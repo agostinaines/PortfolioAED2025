@@ -1,6 +1,7 @@
 package UT8.PD3;
 
 import Grafos.Clases.*;
+import Utils.ManejadorArchivosGenerico;
 
 public class Ejercicio2 {
     public static void main(String[] args) {

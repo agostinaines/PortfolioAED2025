@@ -1,4 +1,4 @@
-package Grafos.Clases;
+package Utils;
 
 import java.io.*;
 import java.util.ArrayList;

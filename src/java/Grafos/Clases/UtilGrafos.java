@@ -1,6 +1,8 @@
 package Grafos.Clases;
 
 import Grafos.Interfaces.IGrafoDirigido;
+import Utils.ManejadorArchivosGenerico;
+
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

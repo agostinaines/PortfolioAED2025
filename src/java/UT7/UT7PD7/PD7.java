@@ -1,6 +1,6 @@
 package UT7.UT7PD7;
 
-import Grafos.Clases.ManejadorArchivosGenerico;
+import Utils.ManejadorArchivosGenerico;
 import Grafos.Clases.TGrafoDirigido;
 import Grafos.Clases.UtilGrafos;
 import Grafos.Interfaces.IVertice;
