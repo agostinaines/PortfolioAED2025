@@ -1,0 +1,122 @@
+﻿EJERCICIO 1
+Árbol después de la incersión:
+                          T
+                       /     \
+                      P       Y
+                     / \     / \
+                    L   S   U   Z
+                   / \       \
+                  K   N       X
+                 /           /
+                J           V
+               /
+              A
+               \
+                C
+
+   ¿Cuál de las siguientes afirmaciones es correcta?
+    a. El árbol tiene altura 7: incorrecto.
+    b. Y es ancestro de C: incorrecto.
+    c. X es un descendiente de P: incorrecto.
+    d. S es una hoja: correcto.
+
+   Indica la respuesta correcta y analiza por qué las demás no lo son:
+    a. El árbol tiene 5 hojas: correcto, el árbol presenta cinco nodos que no presentan ningún hijo (C, N, S, V, Z).
+    b. V es descendiente de S: incorrecto, no existe un camino directo desde V hasta S.
+    c. K es hermano de J: incorrecto, K es padre de J.
+    d. A y X están en el mismo nivel: incorrecto, A está en el nivel 5 y X está en el nivel 3.
+
+    Para imprimir las claves en orden lexicográfico basta con: b. recorrer el árbol en POSTORDEN.
+
+ EJERCICIO 2:
+    MiFunción : devuelve un tipo entero
+    Comienzo
+        A <- -1; B <- -1
+        Si HijoIzquierdo <> nulo entonces
+            A <- HijoIzquierdo.MiFunción
+        Fin Si
+
+        Si HijoDerecho <> nulo entonces
+            B <- HijoDerecho.MiFunción
+        Fin Si
+        Devolver máximo(A,B) + 1
+       Fin
+
+    Este algoritmo, aplicado a la raíz de un árbol, devuelve: a. La altura del árbol.
+    El orden de tiempo de ejecución del algoritmo es: a. O(n)
+
+EJERCICIO 3:
+    Dado un árbol binario de búsqueda inicialmente vacío, realiza las siguientes operaciones:
+    1. Inserta las claves 12, 25, 14, 1, 33, 88, 45, 2, 7, 66,5, 99
+
+                                     12
+                                  /      \
+                                 1        25
+                                  \      /  \
+                                   2    14  33
+                                    \        \
+                                     7       88
+                                    /       /  \
+                                   5       45  99
+                                            \
+                                             66
+
+        a. Escribe los recorridos:
+            i. Preorden: 12, 1, 2, 7, 5, 25, 14, 33, 88, 45, 66, 99.
+            ii. Inorden: 1, 5, 7, 2, 12, 14, 25, 45, 9, 88, 99, 33.
+            iii. Postorden: 5, 7, 2, 1, 14, 66, 45, 99, 88, 33, 25, 12.
+
+    2. A partir del árbol final, elimina las claves 99, 2, 12, 33
+        99:
+                                     12
+                                  /      \
+                                 1        25
+                                  \      /  \
+                                   2    14  33
+                                    \        \
+                                     7       88
+                                    /       /
+                                   5       45
+                                            \
+                                             66
+
+        2:
+                                     12
+                                  /      \
+                                 1        25
+                                  \      /  \
+                                   7    14  33
+                                    \        \
+                                     5       88
+                                            /  \
+                                           45  99
+                                            \
+                                             66
+        12:
+                                     7
+                                  /     \
+                                 1       25
+                                  \     /  \
+                                   5   14  33
+                                            \
+                                            88
+                                           /  \
+                                          45  99
+                                           \
+                                            66
+        33:
+                                     7
+                                  /     \
+                                 1       25
+                                  \     /  \
+                                   5   14  88
+                                           /
+                                          45
+                                            \
+                                            66
+
+
+        a. Escribe los recorridos:
+          i. Preorden: 7, 1, 3, 25, 14, 88, 45, 66.
+          ii. Inorden: 1, 2, 7, 14, 25, 66, 45, 88.
+          iii. Postorden: 5, 2, 14, 66, 45, 88, 25, 7.

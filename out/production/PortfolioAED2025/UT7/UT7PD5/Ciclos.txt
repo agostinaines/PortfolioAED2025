@@ -1,71 +1,24 @@
-﻿@Override
-    public boolean tieneCiclo() {
-        desvisitarVertices();
-        int i = 0;
-        boolean resultado = false;
+﻿tieneCiclo():
+    Marcar todos los vértices como no visitados
+    Inicializar índice i en 0
+    Inicializar variable resultado en falso
 
-        for (IVertice vertice : getVertices().values()) {
+    Para cada vértice en la lista de vértices:
+        Crear un nuevo camino con el vértice como origen
+        Obtener las etiquetas de los vértices ordenadas
+        Crear una lista vacía de caminos
 
-            TCamino camino = new TCamino((TVertice) vertice);
-            TCaminos caminos = new TCaminos();
+        todosLosCaminos ← obtener todos los caminos desde el vértice actual hacia la etiqueta en la posición i
 
-            Object[] etiquetas = getEtiquetasOrdenado();
+        Para cada caminoExtraído en todosLosCaminos:
+            resultado ← verificar si el camino tiene un ciclo, si vuelve a un vértice ya visitadp
+            Si resultado es verdadero:
+                Imprimir las etiquetas del camino
+            Fin Si
+        Fin Para cada
 
-            TCaminos todosLosCaminos = vertice.todosLosCaminosConCiclo((Comparable) etiquetas[i], camino, caminos);
-            Object[] caminosExtra = todosLosCaminos.getCaminos().toArray();
+        i <- i + 1
 
-            for (int j = 0; j < caminosExtra.length; j++) {
-                resultado = vertice.tieneCiclo((TCamino) caminosExtra[j]);
-                if (resultado) {
-                    System.out.println(((TCamino) caminosExtra[j]).imprimirEtiquetas());
-                }
-            }
-            i++;
-        }
-        return resultado;
-    }
+    Devolver resultado
 
-    @Override
-        public TCaminos todosLosCaminosConCiclo(Comparable etVertDest, TCamino caminoPrevio, TCaminos todosLosCaminos) {
-            this.setVisitado(true);
-
-            for (IAdyacencia adyacencia : this.getAdyacentes()) {
-                TVertice destino = (TVertice) adyacencia.getDestino();
-                TCamino copia = caminoPrevio.copiar();
-                copia.agregarAdyacencia((TAdyacencia) adyacencia);
-
-                if (destino.getEtiqueta().compareTo(etVertDest) == 0) {
-                    if (copia.getOtrosVertices().size() > 0) {
-                        todosLosCaminos.getCaminos().add(copia);
-                    }
-                } else {
-                    if (!caminoPrevio.getOtrosVertices().contains(destino.getEtiqueta())) {
-                        destino.todosLosCaminosConCiclo(etVertDest, copia, todosLosCaminos);
-                    } else
-                        todosLosCaminos.getCaminos().add(copia);
-                }
-
-            }
-            this.setVisitado(false);
-            return todosLosCaminos;
-        }
-
-     public boolean tieneCiclo(TCamino unCamino) {
-            boolean resultado = false;
-            Collection<Comparable> otrosVertices = unCamino.getOtrosVertices();
-            TVertice origen = unCamino.getOrigen();
-            ArrayList<Comparable> aux = new ArrayList<>();
-            aux.add(origen.getEtiqueta());
-            for (Comparable vertices : otrosVertices) {
-                if (aux.contains(vertices)) {
-                    resultado = true;
-                }
-                aux.add(vertices);
-            }
-            return resultado;
-        }
-
-
-
-tieneCiclo()
 
