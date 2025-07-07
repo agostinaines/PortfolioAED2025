@@ -1,0 +1,19 @@
+1, 5354
+2, 4292
+3, 4734
+4, 10996
+5, 2979
+6, 10903
+7, 1342
+8, 2978
+9, 1383
+0
+10, 5365
+11, 6661
+12, 4345
+Dato buscado: 4292
+Dato buscado: -979
+Dato buscado: -297
+Dato buscado: -130
+Dato buscado: 10903
+Dato buscado: 5354
